@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<script>
+  //Create variables to keep track of how many rounds each player wins and initialise to 0
+  let timesOfComputerWin = 0;
+  let timesOfUserWin = 0;
+  //Create a for loop to make the game run for 5 rounds and stop
+  for (i=1; i<=5; i++){
+    //Create a prompt asking the user to choose between rock, paper and scissors and convert whatever they input into lower case
+    let userInput = prompt(`ROUND ${i}\nRock?\nPaper?\nScissors?`).toLowerCase();
+
+    //create a while loop to handle error whenever the user inputs anything other than rock, paper or Scissors
+    while (userInput !== "rock" && userInput !== "paper" && userInput !== "scissors") {
+        userInput = prompt("Invalid entry\nPlease choose Rock, Paper or Scissors").toLowerCase()
+    }
+
+    //Write a code that lets the compter make a choise between rock. paper and scissors using Math.randon()
+
+    //Create a variable "random" that that it's value generates randon number from 0-1 using Math.random()
+    let random = Math.random();
+
+    //Create a variable "computerChoice" with an empty string
+    let computerChoice = ""
+
+    // Split random's number range(0-1) into 3 equal parts and as using an if, else statement, make the value of computerChoice either, rock, paper or scissors depending on which part random belongs
+    if ( random >= 0 && random < 0.33){
+        computerChoice = "rock"
+    }
+    else if  ( random >= 0.33 && random < 0.67){
+        computerChoice = "paper"
+    }
+    else{
+    computerChoice = "scissors"
+    }
+
+    //Create a while loop to keep iterating whenever it's a tie
+    while(userInput === computerChoice) {
+        userInput = prompt("It's a tie, Choose again!\nRock?\nPaper?\nScissors?")
+
+        while (userInput !== "rock" && userInput !== "paper" && userInput !== "scissors") {
+    userInput = prompt("Invalid entry\nPlease choose Rock, Paper or Scissors").toLowerCase()
+  }
+
+  random = Math.random();
+  if ( random >= 0 && random < 0.33){
+        computerChoice = "rock"
+    }
+    else if  ( random >= 0.33 && random < 0.67){
+        computerChoice = "paper"
+    }
+    else{
+    computerChoice = "scissors"
+    }
+
+    }
+
+    //Write an if, else statement stating the conditions for winning and what should happen after a winner is determined
+    if (userInput === "paper" && computerChoice === "scissors" || userInput == "rock" && computerChoice === "paper" ||
+     userInput === "scissors" && computerChoice === "rock") {
+        confirm(`Computer chose ${computerChoice} , the Computer won!!!`), timesOfComputerWin++ //increases timesOfComputerWin by 1 each time computer wines
+     }
+     else {
+        confirm(`You chose ${userInput} and the Computer chose ${computerChoice}, You won!!!`) , timesOfUserWin++ //increases timesOfUserWin by 1 each time user wines
+        }
+
+    console.log(random)
+      }
+
+      //Write an if else statement stating the condition for determining and outputing the overall winner after the final round
+    if(timesOfComputerWin > timesOfUserWin){
+      confirm(`Score =   Computer        ${timesOfComputerWin}:${timesOfUserWin}        You\nComputer won ${timesOfComputerWin} times out of 5`)
+    }
+    else{
+      confirm(`Score =   Computer        ${timesOfComputerWin}:${timesOfUserWin}        You\nYou won ${timesOfUserWin} times out of 5`)
+    }
+</script>
